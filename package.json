@@ -1,0 +1,20 @@
+{
+  "name": "mdx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mdx-deck": "^2.0.6",
+    "styled-components": "^4.2.0"
+  },
+  "devDependencies": {
+    "file-loader": "^3.0.1"
+  },
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

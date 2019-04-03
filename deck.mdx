@@ -1,0 +1,126 @@
+export { big as theme } from "mdx-deck/themes";
+import Code from "./components/Code";
+import { Split } from "mdx-deck/layouts";
+
+# Apollo G-REST-QL w/ Domitrius Clark
+
+---
+
+What are the best ways to bring your REST data into your Graphql focused app you ask?
+
+---
+
+# First: Bringing REST to your client query w/ apollo-link-rest
+
+---
+
+## Pros:
+
+- No schema or resolver setup
+- Plug and play w/ your REST endpoints without much configuration
+- Most useful for introducing a lower amount of endpoints
+
+---
+
+## Cons:
+
+- There is no way to hide your apikeys behind an env variable on the client side
+- No configuration of a schema leaves you without many of the benifits of the GQL ecosystem
+
+---
+
+Let's dive into the code!
+
+---
+
+Setup your Apollo Client with the base endpoint uri using RestLink as one of your links.
+
+<Code src={require("file-loader!./images/restLink.png")} width="45%" />
+
+---
+
+Now that you've set the link up, we have access to the @rest directive inside of the Query component provided by react-apollo.
+
+<Code src={require("file-loader!./images/mediaQuery.png")} width="45%" />
+
+---
+
+After only two steps we're ready to setup our Component and kick off getting data from the endpoint
+
+<Code
+  src={require("file-loader!./images/searchMediaComponent.png")}
+  width="40%"
+/>
+
+---
+
+# Second: Wrapping REST endpoints on the server w/ ApolloServer's RESTDataSource
+
+---
+
+## Pros:
+
+- Allows you to wrap all of the endpoints for a certain API in one class w/ all HTTP verbs at your disposal
+- Build types and restrucure/thin out the response data how you want it
+- Business logic contained inside the server w/ a playground to play with the data
+- Ability to hide your apikeys in your environment variables
+
+---
+
+## Cons:
+
+- A lot of setup for use with a small amount of endpoints
+
+---
+
+Let's dive into the code!
+
+---
+
+Unlike apollo-link-rest, ApolloServer has you set up a schema and datasource using RESTDataSource. Let's look at the server setup and schema.
+
+---
+
+## Our server setup
+
+<Code src={require("file-loader!./images/serverSetup.png")} width="55%" />
+
+---
+
+## Our schema
+
+<Code src={require("file-loader!./images/schema.png")} width="40%" />
+
+---
+
+Let's revisit our datasource. The RESTDataSource allows you to create a class to define your baseUrl and any endpoints + business logic needed for your REST endpoint.
+
+---
+
+export default Split;
+
+Inside the OMDBApi we define the baseUrl and methods that allow us to hit different endpoints with HTTP verbs
+
+<Code src={require("file-loader!./images/restDataSource.png")} width="50%" />
+
+---
+
+export default Split;
+
+Now that we have the code setup for our server, let's grab our client code.
+
+<Code src={require("file-loader!./images/apolloServerQuery.png")} width="70%" />
+
+---
+
+## Final thoughts
+
+---
+
+- The real strength of using ApolloServer is the ability to control your types alongside a database.
+- If you have a existing GQL app and need to use a REST API to combine data within Queries/Mutations, apollo-link-rest is extremely handy
+- Between Apollo Client \* Server, building a GraphQL app has become a contained and simple process
+
+---
+
+# Questions??
